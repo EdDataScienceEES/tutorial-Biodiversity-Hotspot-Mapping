@@ -4,11 +4,28 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 
 ### Tutorial Aims
 
-#### <a href="#section1"> 1. The first section</a>
+#### 1. Understand the variety of functions in the `dplyr` package and its application to biodiversity data.</a>
 
-#### <a href="#section2"> 2. The second section</a>
+#### 2. Learn to creatively combine and manipulate biodiversity tables and spatial data.</a>
 
-#### <a href="#section3"> 3. The third section</a>
+#### 3. Become efficient and creative in manipulating species occurrence data and environmental variables.</a>
+
+
+### Tutorial Steps
+
+#### <a href="#section1">1. Introduction</a>
+- Prerequisites
+- Data and Materials
+
+#### <a href="#section2">PART I: Species Occurrence Data</a>
+- Combining Rows with `bind_rows`
+- Comparing Data with Set Operations
+- Combining Tables with Mutating Joins
+- Combining Tables with Filtering Joins
+
+#### <a href="#section4">PART II: Environmental Data</a>
+
+
 
 You can read this text, then delete it and replace it with your text about your tutorial: what are the aims, what code do you need to achieve them?
 ---------------------------
@@ -26,7 +43,12 @@ You can get all of the resources for this tutorial from <a href="https://github.
 
 <a name="section1"></a>
 
-## 1. The first section
+## 1. Introduction
+
+In this tutorial, we will be working with species occurrence data and environmental data to map biodiversity hotspots. You will learn how to handle and visualize biodiversity data in R using the `dplyr` package, as well as spatial analysis techniques with `ggplot2` and raster. We will focus on Panthera leo (Lions) as an example species and use data from the Global Biodiversity Information Facility (GBIF) and WorldClim for environmental factors.
+
+### Prerequisites
+### Data and Materials
 
 
 At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
