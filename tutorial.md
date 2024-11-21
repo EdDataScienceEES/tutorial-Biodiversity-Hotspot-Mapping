@@ -26,29 +26,31 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 #### <a href="#section4">PART II: Environmental Data</a>
 
 
-
-You can read this text, then delete it and replace it with your text about your tutorial: what are the aims, what code do you need to achieve them?
----------------------------
-We are using `<a href="#section_number">text</a>` to create anchors within our text. For example, when you click on section one, the page will automatically go to where you have put `<a name="section_number"></a>`.
-
-To create subheadings, you can use `#`, e.g. `# Subheading 1` creates a subheading with a large font size. The more hashtags you add, the smaller the text becomes. If you want to make text bold, you can surround it with `__text__`, which creates __text__. For italics, use only one understore around the text, e.g. `_text_`, _text_.
-
-# Subheading 1
-## Subheading 2
-### Subheading 3
-
-This is some introductory text for your tutorial. Explain the skills that will be learned and why they are important. Set the tutorial in context.
-
-You can get all of the resources for this tutorial from <a href="https://github.com/ourcodingclub/CC-EAB-tut-ideas" target="_blank">this GitHub repository</a>. Clone and download the repo as a zip file, then unzip it.
-
-<a name="section1"></a>
-
 ## 1. Introduction
 
 In this tutorial, we will be working with species occurrence data and environmental data to map biodiversity hotspots. You will learn how to handle and visualize biodiversity data in R using the `dplyr` package, as well as spatial analysis techniques with `ggplot2` and raster. We will focus on Panthera leo (Lions) as an example species and use data from the Global Biodiversity Information Facility (GBIF) and WorldClim for environmental factors.
 
 ### Prerequisites
+
+While we will use programming language `R` throughout the tutorial, the concepts you will learn here are applicable in other programming languages as well! To fully appreciate the code in this tutorial you should have at least a basic knowledge of data manipulation using `dplyr`, `tidyr` and visualising data using `ggplot2`. If you are new to R or need to refresh your memory there are great resources available on the Coding Club website:
+
+[Getting started with R and RStudio](https://ourcodingclub.github.io/tutorials/intro-to-r/)
+
+[Basic data manipulation](https://ourcodingclub.github.io/tutorials/data-manip-intro/)
+
+[Beautiful and informative data visualisation](https://ourcodingclub.github.io/tutorials/datavis/)
+
 ### Data and Materials
+
+You can find all the data that you require for completing this tutorial on this [GitHub repository](https://github.com/EdDataScienceEES/tutorial-xiongshizhao). We encourage you to download the data to your computer and work through the examples along the tutorial as this reinforces your understanding of the concepts taught in the tutorial.
+
+Now we are ready to dive into the world of transformations and scaling!
+
+
+
+
+
+
 
 
 At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
