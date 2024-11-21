@@ -28,11 +28,18 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 
 ## 1. Introduction
 
-In this tutorial, we will be working with species occurrence data and environmental data to map biodiversity hotspots. You will learn how to handle and visualize biodiversity data in R using the `dplyr` package, as well as spatial analysis techniques with `ggplot2` and raster. We will focus on Panthera leo (Lions) as an example species and use data from the Global Biodiversity Information Facility (GBIF) and WorldClim for environmental factors.
+Data come in a variety of forms, and understanding how to visualize and analyze them is crucial for uncovering patterns and insights. In the field of biodiversity conservation, mapping biodiversity hotspots is one of the most effective ways to identify areas of high species richness and vulnerability. This tutorial will guide you through the process of working with species occurrence data and environmental data to map biodiversity hotspots.
+
+We will focus on Panthera leo (Lions) as our example species and use data from the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org/zh/) for species occurrences and WorldClim for environmental factors. You'll learn how to handle and visualize biodiversity data in `R` using the `dplyr` package for data manipulation, and spatial analysis techniques with `ggplot2` and `raster` for creating informative maps
 
 ### Prerequisites
 
-While we will use programming language `R` throughout the tutorial, the concepts you will learn here are applicable in other programming languages as well! To fully appreciate the code in this tutorial you should have at least a basic knowledge of data manipulation using `dplyr`, `tidyr` and visualising data using `ggplot2`. If you are new to R or need to refresh your memory there are great resources available on the Coding Club website:
+This tutorial is suitable for those with a basic understanding of data manipulation and visualization in `R`. We will cover concepts from basic data cleaning and transformation with `dplyr`, to more advanced spatial analysis with `ggplot2` and `raster`. To make the most out of this tutorial, you should be familiar with:
+
+- Data manipulation using `dplyr` and `tidyr`
+- Data visualization with `ggplot2`
+
+If you're new to these topics or need a refresher, there are excellent resources available on the Coding Club website:
 
 [Getting started with R and RStudio](https://ourcodingclub.github.io/tutorials/intro-to-r/)
 
@@ -44,7 +51,7 @@ While we will use programming language `R` throughout the tutorial, the concepts
 
 You can find all the data that you require for completing this tutorial on this [GitHub repository](https://github.com/EdDataScienceEES/tutorial-xiongshizhao). We encourage you to download the data to your computer and work through the examples along the tutorial as this reinforces your understanding of the concepts taught in the tutorial.
 
-Now we are ready to dive into the world of transformations and scaling!
+Now, let's get started with mapping biodiversity hotspots!
 
 
 
