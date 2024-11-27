@@ -76,14 +76,58 @@ You can find all the data that you require for completing this tutorial on this 
 
 Begin by setting up a new R script. At the very top, include a few lines to introduce the project, such as your name, the date, and a brief description. Don't forget to use hashtags (#) for comments to keep things neat and clear!
 
-<div class="code-container" style="position: relative; border: 1px solid #ddd; border-radius: 5px; padding: 15px; background-color: #f9f9f9;">
-    <button class="copy-button" onclick="copyCode('code-block-biodiversity')" style="position: absolute; top: 10px; right: 10px; background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Copy</button>
-    <pre id="code-block-biodiversity" style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 14px; background: none; border: none;">
+<style>
+    .code-container {
+        position: relative;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+    }
+
+    .copy-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .copy-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<div class="code-container">
+    <button class="copy-button" onclick="copyCode('code-block-biodiversity')">Copy</button>
+    <pre id="code-block-biodiversity">
 # Biodiversity Hotspot
 # Author: Your Name
 # Date: `r Sys.Date()`
     </pre>
 </div>
+
+<script>
+    function copyCode(codeBlockId) {
+        const code = document.getElementById(codeBlockId).textContent.trim();
+        navigator.clipboard.writeText(code)
+            .then(() => {
+                alert('Code copied to clipboard!');
+            })
+            .catch(err => {
+                console.error('Failed to copy code:', err);
+                alert('Failed to copy code. Please try again.');
+            });
+    }
+</script>
+
 
 
 
