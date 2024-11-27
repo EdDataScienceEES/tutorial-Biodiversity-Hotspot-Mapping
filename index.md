@@ -74,62 +74,53 @@ You can find all the data that you require for completing this tutorial on this 
 **Now, let's get started!**
 
 
-Begin by setting up a new R script. At the very top, include a few lines to introduce the project, such as your name, the date, and a brief description. Don't forget to use hashtags (#) for comments to keep things neat and clear!
+Begin by setting up a new R script. At the very top, include a few lines to introduce the project, such as your name, the date, and a brief description. When going through the tutorial, copy the individual code chunks and paste them to your script. Use # when adding comments.
 
-<style>
-    .code-container {
-        position: relative;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 15px;
-        background-color: #f9f9f9;
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 14px;
-    }
-
-    .copy-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .copy-button:hover {
-        background-color: #45a049;
-    }
-</style>
-
-<div class="code-container">
-    <button class="copy-button" onclick="copyCode('code-block-biodiversity')">Copy</button>
-    <pre id="code-block-biodiversity">
+<div class="code-container" style="position: relative;">
+    <button class="copy-button" onclick="copyCode('code-block-ddmmyy')" style="position: absolute; top: 10px; right: 10px; background-color: #4CAF50; color: white; border: none; padding: 10px; border-radius: 5px;">Copy contents</button>
+    <pre id="code-block-ddmmyy">
 # Biodiversity Hotspot
 # Author: Your Name
-# Date: `r Sys.Date()`
+# Date: DD/MM/YYYY
     </pre>
 </div>
 
 <script>
     function copyCode(codeBlockId) {
-        const code = document.getElementById(codeBlockId).textContent.trim();
-        navigator.clipboard.writeText(code)
-            .then(() => {
-                alert('Code copied to clipboard!');
-            })
-            .catch(err => {
-                console.error('Failed to copy code:', err);
-                alert('Failed to copy code. Please try again.');
-            });
+        const code = document.getElementById(codeBlockId);
+        const textarea = document.createElement('textarea');
+        textarea.value = code.textContent;
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        alert('Code copied to your clipboard');
     }
 </script>
 
+Setting the working directory, install and load libraries of all packages required for this tutorial.
 
+<div class="code-container" style="position: relative;">
+    <button class="copy-button" onclick="copyCode('code-block-install')" style="position: absolute; top: 10px; right: 10px; background-color: #4CAF50; color: white; border: none; padding: 10px; border-radius: 5px;">Copy contents</button>
+    <pre id="code-block-install">
+    
+# Set working directory to where you saved the folder with tutorial materials on your computer
+setwd("your_filepath")
 
+# Load necessary libraries
+# Uncomment the following lines to install the required packages if not already installed
+# install.packages("dplyr")
+# install.packages("ggplot2")
+
+# Load required libraries
+install.packages("dplyr")
+install.packages("ggplot2")
+
+# Load the Gorilla gorilla occurrence data
+gorilla <- read.csv("data/gorilla.csv")
+    </pre>
+</div>
 
 
 
