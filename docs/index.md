@@ -20,10 +20,8 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 - <a href="#section3">Data and Materials</a>
 
 ##### <a href="#section2">PART I: Species Occurrence Data</a>
-- Combining Rows with `bind_rows`
-- Comparing Data with Set Operations
-- Combining Tables with Mutating Joins
-- Combining Tables with Filtering Joins
+- Inspecting the Data
+
 
 ##### <a href="#section4">PART II: Environmental Data</a>
 
@@ -34,11 +32,12 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 
 Biodiversity hotspot mapping is the process of identifying areas on Earth that are particularly rich in species diversity and are under threat from human activities. These hotspots are often characterized by high levels of unique species found nowhere else, making them critical for conservation efforts. Mapping these areas allows us to prioritize regions for protection and sustainable management.
 
-In this tutorial, we focus on how to map biodiversity hotspots using species occurrence data and environmental factors. We start by retrieving data on species, such as the lion (Panthera leo), from sources like the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org/zh/), which provides information on where different species are found.
+In this tutorial, we focus on how to map biodiversity hotspots using species occurrence data and environmental factors. We start by retrieving data on species, such as the gorilla, from sources like the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org/zh/), which provides information on where different species are found.
 
 By visualizing the occurrence of species over environmental factors, we can identify areas where species thrive. This can help us understand the relationship between species distribution and the environment. You'll learn how to handle and visualize biodiversity data in `R` using the `dplyr` package for data manipulation, and spatial analysis techniques with `ggplot2` and `raster` to create informative maps.
 
 The goal of biodiversity hotspot mapping is not just to show where species live, but to inform conservation strategies by focusing attention on areas that need protection the most. This process ultimately helps in preserving our planet’s most vulnerable ecosystems and species.
+
 
 <p align="center">
   <div style="display:inline-block; text-align:center; width:45%; margin-right: 10px;">
@@ -50,12 +49,6 @@ The goal of biodiversity hotspot mapping is not just to show where species live,
     </i>
   </div>
 </p>
-
-
-
-
-
-
 
 
 #### <a name="section2">Prerequisites</a>
@@ -78,7 +71,19 @@ If you're new to these topics or need a refresher, there are excellent resources
 
 You can find all the data that you require for completing this tutorial on this [GitHub repository](https://github.com/EdDataScienceEES/tutorial-xiongshizhao). We encourage you to download the data to your computer and work through the examples throughout the tutorial as this will reinforces your understanding of the concepts taught in the tutorial.
 
-**Now, let's get started with mapping biodiversity hotspots!**
+**Now, let's get started!**
+
+
+Begin by setting up a new R script. At the very top, include a few lines to introduce the project, such as your name, the date, and a brief description. Don't forget to use hashtags (#) for comments to keep things neat and clear!
+
+<div class="code-container" style="position: relative; border: 1px solid #ddd; border-radius: 5px; padding: 15px; background-color: #f9f9f9;">
+    <button class="copy-button" onclick="copyCode('code-block-ddmmyy')" style="position: absolute; top: 10px; right: 10px; background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Copy</button>
+    <pre id="code-block-ddmmyy" style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 14px; background: none; border: none;">
+# Biodiversity Hotspot
+# Author: Your Name
+# Date: DD/MM/YYYY
+    </pre>
+</div>
 
 
 
