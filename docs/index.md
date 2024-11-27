@@ -4,37 +4,38 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 
 ### Tutorial Aims
 
-#### 1. Understand the variety of functions in the `dplyr` package and its application to biodiversity data.</a>
+##### 1. Understand the variety of functions in the `dplyr` package and its application to biodiversity data.
 
-#### 2. Learn to creatively combine and manipulate biodiversity tables and spatial data.</a>
+##### 2. Learn to creatively combine and manipulate biodiversity tables and spatial data.
 
-#### 3. Become efficient and creative in manipulating species occurrence data and environmental variables.</a>
+##### 3. Become efficient and creative in manipulating species occurrence data and environmental variables.
 
 
 ### Tutorial Steps
 
-#### <a href="#section1">1. Introduction</a>
-- Prerequisites
-- Data and Materials
+##### <a href="#section1">1. Introduction</a>
+- <a href="#section2">Prerequisites</a>
+- <a href="#section3">Data and Materials</a>
 
-#### <a href="#section2">PART I: Species Occurrence Data</a>
+##### <a href="#section2">PART I: Species Occurrence Data</a>
 - Combining Rows with `bind_rows`
 - Comparing Data with Set Operations
 - Combining Tables with Mutating Joins
 - Combining Tables with Filtering Joins
 
-#### <a href="#section4">PART II: Environmental Data</a>
+##### <a href="#section4">PART II: Environmental Data</a>
 
 
-## 1. Introduction
 
-Data come in a variety of forms, and understanding how to visualize and analyze them is crucial for uncovering patterns and insights. In the field of biodiversity conservation, mapping biodiversity hotspots is one of the most effective ways to identify areas of high species richness and vulnerability. This tutorial will guide you through the process of working with species occurrence data and environmental data to map biodiversity hotspots.
+### <a name="section1">1. Introduction</a>
 
-We will focus on Panthera leo (Lions) as our example species and use data from the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org/zh/) for species occurrences and WorldClim for environmental factors. You'll learn how to handle and visualize biodiversity data in `R` using the `dplyr` package for data manipulation, and spatial analysis techniques with `ggplot2` and `raster` for creating informative maps
+Data come in a variety of forms, and understanding how to visualize and analyze them is crucial for uncovering patterns and insights. In the field of biodiversity conservation, mapping biodiversity hotspots is one of the most effective ways to identify areas with high species richness and vulnerability. This tutorial will guide you through the process of working with species occurrence data and environmental data to map these hotspots.
 
-### Prerequisites
+We will focus on Panthera leo (lions) as our example species and use data from the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org/zh/) for species occurrences and WorldClim for environmental factors. You'll learn how to handle and visualize biodiversity data in `R` using the `dplyr` package for data manipulation, and spatial analysis techniques with `ggplot2` and `raster` to creating informative maps.
 
-This tutorial is suitable for those with a basic understanding of data manipulation and visualization in `R`. We will cover concepts from basic data cleaning and transformation with `dplyr`, to more advanced spatial analysis with `ggplot2` and `raster`. To make the most out of this tutorial, you should be familiar with:
+#### <a name="section2">Prerequisites</a>
+
+This tutorial is suitable for those with a basic understanding of data manipulation and visualization in `R`. We will cover concepts ranging from basic data cleaning and transformation with `dplyr`, to more advanced spatial analysis with `ggplot2` and `raster`. To make the most of this tutorial, you should be familiar with:
 
 - Data manipulation using `dplyr` and `tidyr`
 - Data visualization with `ggplot2`
@@ -47,11 +48,12 @@ If you're new to these topics or need a refresher, there are excellent resources
 
 [Beautiful and informative data visualisation](https://ourcodingclub.github.io/tutorials/datavis/)
 
-### Data and Materials
 
-You can find all the data that you require for completing this tutorial on this [GitHub repository](https://github.com/EdDataScienceEES/tutorial-xiongshizhao). We encourage you to download the data to your computer and work through the examples along the tutorial as this reinforces your understanding of the concepts taught in the tutorial.
+#### <a name="section3">Data and Materials</a>
 
-Now, let's get started with mapping biodiversity hotspots!
+You can find all the data that you require for completing this tutorial on this [GitHub repository](https://github.com/EdDataScienceEES/tutorial-xiongshizhao). We encourage you to download the data to your computer and work through the examples throughout the tutorial as this will reinforces your understanding of the concepts taught in the tutorial.
+
+**Now, let's get started with mapping biodiversity hotspots!**
 
 
 
