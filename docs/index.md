@@ -41,10 +41,11 @@ By visualizing the occurrence of species over environmental factors, we can iden
 The goal of biodiversity hotspot mapping is not just to show where species live, but to inform conservation strategies by focusing attention on areas that need protection the most. This process ultimately helps in preserving our planet’s most vulnerable ecosystems and species.
 
 <p align="center">
-  <img src="figures/world-map-biological-hotspot-labels.png" width="80%" />
+  <img src="figures/worldmap_biological_hotspot.png" width="80%" />
   <br>
   Map showing global biodiversity hotspots (Weller et al. 2014). Source: [ATLAS for the END of the WORLD](https://atlas-for-the-end-of-the-world.com/world_maps/world_maps_biological_hotspots.html)
 </p>
+
 
 
 
