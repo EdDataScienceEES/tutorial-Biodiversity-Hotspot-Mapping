@@ -2,6 +2,8 @@
 
 To add images, replace `tutheaderbl1.png` with the file name of any image you upload to your GitHub repository.
 
+## Biodiversity Hotspot Mapping
+
 ### Tutorial Aims
 
 ##### 1. Understand the variety of functions in the `dplyr` package and its application to biodiversity data.
@@ -13,7 +15,7 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 
 ### Tutorial Steps
 
-##### <a href="#section1">1. Introduction</a>
+##### <a href="#section1">Introduction</a>
 - <a href="#section2">Prerequisites</a>
 - <a href="#section3">Data and Materials</a>
 
@@ -27,11 +29,25 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 
 
 
-### <a name="section1">1. Introduction</a>
+---------------------------
+### <a name="section1">Introduction</a>
 
-Data come in a variety of forms, and understanding how to visualize and analyze them is crucial for uncovering patterns and insights. In the field of biodiversity conservation, mapping biodiversity hotspots is one of the most effective ways to identify areas with high species richness and vulnerability. This tutorial will guide you through the process of working with species occurrence data and environmental data to map these hotspots.
+Biodiversity hotspot mapping is the process of identifying areas on Earth that are particularly rich in species diversity and are under threat from human activities. These hotspots are often characterized by high levels of unique species found nowhere else, making them critical for conservation efforts. Mapping these areas allows us to prioritize regions for protection and sustainable management.
 
-We will focus on Panthera leo (lions) as our example species and use data from the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org/zh/) for species occurrences and WorldClim for environmental factors. You'll learn how to handle and visualize biodiversity data in `R` using the `dplyr` package for data manipulation, and spatial analysis techniques with `ggplot2` and `raster` to creating informative maps.
+In this tutorial, we focus on how to map biodiversity hotspots using species occurrence data and environmental factors. We start by retrieving data on species, such as the lion (Panthera leo), from sources like the [Global Biodiversity Information Facility (GBIF)](https://www.gbif.org/zh/), which provides information on where different species are found.
+
+By visualizing the occurrence of species over environmental factors, we can identify areas where species thrive. This can help us understand the relationship between species distribution and the environment. You'll learn how to handle and visualize biodiversity data in `R` using the `dplyr` package for data manipulation, and spatial analysis techniques with `ggplot2` and `raster` to create informative maps.
+
+The goal of biodiversity hotspot mapping is not just to show where species live, but to inform conservation strategies by focusing attention on areas that need protection the most. This process ultimately helps in preserving our planet’s most vulnerable ecosystems and species.
+
+<p align="center">
+  <img src="figures/world-map-biological-hotspot-labels.png" width="80%" />
+  <br>
+  Map showing global biodiversity hotspots (Weller et al. 2014). Source: [ATLAS for the END of the WORLD](https://atlas-for-the-end-of-the-world.com/world_maps/world_maps_biological_hotspots.html)
+</p>
+
+
+
 
 #### <a name="section2">Prerequisites</a>
 
