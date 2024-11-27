@@ -44,7 +44,8 @@ The goal of biodiversity hotspot mapping is not just to show where species live,
   <div style="display:inline-block; text-align:center; width:45%; margin-right: 10px;">
     <img src="../figures/worldmap_biological_hotspot.png" width="100%" />
     <br>
-    Map showing global biodiversity hotspots (Weller et al. 2014). (Source: <a href="https://atlas-for-the-end-of-the-world.com/world_maps/world_maps_biological_hotspots.html" style="color: inherit; text-decoration: none;">ATLAS for the END of the WORLD</a>)
+    <i style="font-size: 0.9em;">Map showing global biodiversity hotspots (Weller et al. 2014).<br>
+    (Source: <a href="https://atlas-for-the-end-of-the-world.com/world_maps/world_maps_biological_hotspots.html" style="color: inherit; text-decoration: none;">ATLAS for the END of the WORLD</a>)</i>
   </div>
 </p>
 
