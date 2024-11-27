@@ -41,7 +41,7 @@ The goal of biodiversity hotspot mapping is not just to show where species live,
 
 <p align="center">
   <div style="display:inline-block; text-align:center; width:45%; margin-right: 10px;">
-    <img src="/figures/worldmap_biological_hotspot.png" width="100%" />
+    <img src="figures/worldmap_biological_hotspot.png" width="100%" />
     <br>
     <i style="font-size: 0.9em; text-align: center; display: block;">
       Map showing global biodiversity hotspots (Weller et al. 2014).<br>
