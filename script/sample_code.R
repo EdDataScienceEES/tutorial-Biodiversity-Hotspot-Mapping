@@ -101,13 +101,13 @@ beautifulplot<- ggplot(gorilla_clean, aes(x = longitude, y = latitude, color = s
     panel.grid.major = element_line(color = "gray90", size = 0.5),  # Light major grid lines
     panel.grid.minor = element_line(color = "gray95", size = 0.25),  # Even lighter minor grid lines
     panel.border = element_rect(color = "black", fill = NA, size = 1.2),  # Plot border
-    plot.margin = margin(50, 50, 50, 50),  # Balance the margins
+    plot.margin = margin(30, 30, 30, 30),  # Balance the margins
     plot.background = element_rect(fill = "aliceblue", color = NA)  # Soft background color
   )
 
 # Save the plots
-ggsave("outputs/gorilla_plot.png", plot = plot, width = 6, height = 4, dpi = 300)
-ggsave("outputs/gorilla_beautifulplot.png", plot = beautifulplot, width = 6, height = 4, dpi = 300)
+ggsave("outputs/gorilla_plot.png", plot = plot, width = 8, height = 5, dpi = 300)
+ggsave("outputs/gorilla_beautifulplot.png", plot = beautifulplot, width = 8, height = , dpi = 300)
 
 
 
