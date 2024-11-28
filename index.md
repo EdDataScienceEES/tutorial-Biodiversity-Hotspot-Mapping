@@ -19,26 +19,26 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 - <a href="#section2">Prerequisites</a>
 - <a href="#section3">Data and Materials</a>
 
-##### <a href="#section2">PART I: Data Inspection and Cleaning</a>
-- <a href="#section6">Load and Inspect Data</a>
+##### <a href="#section4">PART I: Data Inspection and Cleaning</a>
+- <a href="#section5">Load and Inspect Data</a>
 - <a href="#section6">Clean the Data</a>
-- <a href="#section6">Check for Duplicates</a>
+- <a href="#section7">Check for Duplicates</a>
 
-##### <a href="#section3">PART II: Geospatial Data Analysis</a>
-- <a href="#section4">Visualize Species Occurrence</a>
-- <a href="#section5">Perform Kernel Density Estimation (KDE)</a>
-- <a href="#section6">KNN for Nearest Neighbor Analysis</a>
+##### <a href="#section8">PART II: Geospatial Data Analysis</a>
+- <a href="#section9">Visualize Species Occurrence</a>
+- <a href="#section10">Perform Kernel Density Estimation (KDE)</a>
+- <a href="#section11">KNN for Nearest Neighbor Analysis</a>
 
-##### <a href="#section7">Part III: Visualizing the Biodiversity Hotspot Map</a>
-- <a href="#section4">Create a Static Hotspot Map</a>
-- <a href="#section4">Create an Interactive Map with Leaflet</a>
+##### <a href="#section12">Part III: Visualizing the Biodiversity Hotspot Map</a>
+- <a href="#section13">Create a Static Hotspot Map</a>
+- <a href="#section14">Create an Interactive Map with Leaflet</a>
 
 
-##### <a href="#section7">Challenges
-- <a href="#section7">Modify KDE: Experiment with adjusting the smoothing parameter (sigma) in KDE to see how it affects hotspot identification.</a>
-- <a href="#section7">Add a New Species: Use a different species (e.g., Panthera leo) and compare the hotspots for that species with the gorillas.</a>
-- <a href="#section7">Environmental Data: Simulate environmental data (e.g., precipitation) and incorporate it into the hotspot analysis.</a>
-- <a href="#section7">Enhance the Interactive Map: Add more details in the interactive map, such as the number of species per hotspot and additional metadata.</a>
+##### <a href="#section15">Challenges
+- <a href="#section16">Modify KDE: Experiment with adjusting the smoothing parameter (sigma) in KDE to see how it affects hotspot identification.</a>
+- <a href="#section17">Add a New Species: Use a different species (e.g., Panthera leo) and compare the hotspots for that species with the gorillas.</a>
+- <a href="#section18">Environmental Data: Simulate environmental data (e.g., precipitation) and incorporate it into the hotspot analysis.</a>
+- <a href="#section19">Enhance the Interactive Map: Add more details in the interactive map, such as the number of species per hotspot and additional metadata.</a>
 
 
 
@@ -54,15 +54,13 @@ By visualizing the occurrence of species over environmental factors, we can iden
 The goal of biodiversity hotspot mapping is not just to show where species live, but to inform conservation strategies by focusing attention on areas that need protection the most. This process ultimately helps in preserving our planet’s most vulnerable ecosystems and species.
 
 
-<p align="center">
-  <div style="display:inline-block; text-align:center; width:45%; margin-right: 10px;">
+<p align="center" style="display:inline-block; text-align:center; width:100%; margin-right: 10px;">
     <img src="figures/worldmap_biological_hotspot.png" width="100%" />
     <br>
     <i style="font-size: 0.9em; text-align: center; display: block;">
       Map showing global biodiversity hotspots (Weller et al. 2014).<br>
       (Source: <a href="https://atlas-for-the-end-of-the-world.com/world_maps/world_maps_biological_hotspots.html" style="color: inherit; text-decoration: none;">ATLAS for the END of the WORLD</a>)
     </i>
-  </div>
 </p>
 
 
@@ -89,9 +87,9 @@ You can find all the data that you require for completing this tutorial on this 
 **Now, let's get started!**
 
 
-### <a href="#section2">PART I: Data Inspection and Cleaning</a>
 
-#### <a href="#section6">Load and Inspect Data</a>
+### <a name="section4">PART I: Data Inspection and Cleaning</a>
+#### <a name="section5">Load and Inspect Data</a>
 
 Begin by setting up a new R script. At the very top, include a few lines to introduce the project, such as your name, the date, and a brief description. When going through the tutorial, copy the individual code chunks and paste them to your script. Use hash symbol `#` when adding comments.
 
@@ -127,7 +125,7 @@ Before start our work like visual or even our final goal-hotspot, we need to ins
 summary(gorilla)
 ```
 
-#### <a href="#section6">Clean the Data</a>
+#### <a name="section6">Clean the Data</a>
 
 After inspecting the brief features of our data, we found that there are NAs, but we don't want to remove all of them. If we do, there may be very little data left, so we will only focus on removing the NAs that may affect our subsequent graphing and mapping.
 
@@ -182,7 +180,7 @@ You may also want to save the cleaned data for future use.
 write.csv(gorilla_clean, "data/gorilla_clean.csv")
 ```
 
-#### <a href="#section6">Check for Duplicates</a>
+#### <a name="section7">Check for Duplicates</a>
 
 Notice that we used the `glimpse` function above. We can see that although we focus on gorillas, there are more specific species under the gorilla genus: ***Gorilla gorilla*** and ***Gorilla beringei***. We will use an r command to help us print out this result manually.
 
@@ -200,10 +198,27 @@ cat("Unique species in the dataset:\n")
 print(unique_species_list)
 ```
 
+If you get the same results as I did, you are correct!
 
-### <a name="#section3">PART II: Geospatial Data Analysis</a>
+```r
+> # Display the number of unique species in the dataset
+> cat("Number of unique species in the dataset:", length(unique_species_list), "\n")
+Number of unique species in the dataset: 2 
+```
 
-#### <a name="#section4">Visualize Species Occurrence</a>
+```r
+> # Display the list of unique species
+> cat("Unique species in the dataset:\n")
+Unique species in the dataset:
+> print(unique_species_list)
+[1] "Gorilla beringei" "Gorilla gorilla" 
+```
+
+
+
+### <a name="section8">PART II: Geospatial Data Analysis</a>
+
+#### <a name="section9">Visualize Species Occurrence</a>
 
 This section focuses on visualizing the occurrence of two gorilla species, ***Gorilla gorilla (Western Gorilla)*** and ***Gorilla beringei (Eastern Gorilla)***, based on their geographic coordinates (longitude and latitude).
 
@@ -262,12 +277,24 @@ ggsave("outputs/gorilla_plot.png", plot = plot, width = 6, height = 4, dpi = 300
 ggsave("outputs/gorilla_beautifulplot.png", plot = beautifulplot, width = 6, height = 4, dpi = 300)
 ```
 
-#### <a href="#section5">Perform Kernel Density Estimation (KDE)</a>
-##### Kernel Density Estimation (KDE)
+Below are the two plots I created. Feel free to share your own! You may also want to discuss with your classmates how you created these graphs, what differences you notice between them, what factors contribute to these differences, and what steps you can take to create more visually appealing plots.
+
+<p align="center" style="display:inline-block; text-align:center; width:100%; margin-right: 10px;">
+    <img src="outputs/gorilla_plot.png" width="100%" />
+    <br>
+</p>
+
+<p align="center" style="display:inline-block; text-align:center; width:100%; margin-right: 10px;">
+    <img src="outputs/gorilla_beautifulplot.png" width="100%" />
+    <br>
+</p>
+
+#### <a name="section10">Perform Kernel Density Estimation (KDE)</a>
+##### Kernel Density Estimation (KDE)</a>
 
 KDE is a statistical method used to estimate the probability density function (PDF) of a continuous random variable. In simpler terms, it helps us understand the distribution of species occurrences across a given geographic area.
 
-##### Purpose of KDE in Biodiversity Hotspot Mapping
+##### Purpose of KDE in Biodiversity Hotspot Mapping</a>
 
 When we have data points (such as species occurrences marked by longitude and latitude) scattered across a geographical region, we may want to see the concentration of those occurrences in certain areas. KDE smooths out these data points into a continuous surface, which shows the density of occurrences across the area.
 
@@ -279,48 +306,61 @@ For example, KDE helps us visualize where species are most concentrated in a giv
 ```r
 # Install additional packages
 install.packages("spatstat")
+install.packages('viridis')
 install.packages("sp")
+install.packages("ks") 
 
-# Perform Kernel Density Estimation
+# Load necessary libraries
 library(spatstat)
+library(viridis)
 library(sp)
+library(ks)
 
-# Create point pattern object
-gorilla_points <- data.frame(x = gorilla_clean$longitude, y = gorilla_clean$latitude)
-coordinates(gorilla_points) <- ~x + y
-pp <- ppp(gorilla_points$x, gorilla_points$y, window = owin(xrange = range(gorilla_points$x), yrange = range(gorilla_points$y)))
+# Extract the grid coordinates and the density estimates
+x_coords <- kde_result$eval.points[[1]]  # Longitude grid points
+y_coords <- kde_result$eval.points[[2]]  # Latitude grid points
 
-# Estimate kernel density
-kde <- density(pp, sigma = 0.05)
+# Create a grid of coordinates using expand.grid() to match the KDE grid
+grid_coords <- expand.grid(x = x_coords, y = y_coords)
 
-# Convert KDE to a data frame for ggplot2
-kde_df <- as.data.frame(kde)
-colnames(kde_df) <- c("x", "y", "z")  # Ensure column names are 'x', 'y', and 'z'
+# Reshape the KDE estimates into a vector for each coordinate
+density_values <- as.vector(kde_result$estimate)
 
-# Visualize the density map
-kde_plot <- ggplot(kde_df, aes(x = x, y = y, fill = z)) +
+# Create the data frame for visualization
+kde_data <- data.frame(
+  x = grid_coords$x,
+  y = grid_coords$y,
+  density = density_values
+)
+
+# Visualize the KDE result using ggplot2
+kde_plot <- ggplot(kde_data, aes(x = x, y = y, fill = density)) +
   geom_tile() +
-  scale_fill_viridis_c() +
-  ggtitle("Kernel Density Estimate of Gorilla Occurrences") +
-  theme_minimal() +
-  theme(plot.background = element_rect(fill = "white"),
-        plot.margin = margin(40, 40, 40, 40))
+  scale_fill_viridis_c() +  # Use a color scale for density
+  ggtitle("Kernel Density Estimation of Gorilla Occurrences") +
+  labs(x = "Longitude", y = "Latitude", fill = "Density") +
+  theme_minimal()
 
-# Save the plots
+# Save the plot
 ggsave("outputs/kdeplot.png", plot = kde_plot, width = 8, height = 5, dpi = 300)
 ```
+
+<p align="center" style="display:inline-block; text-align:center; width:100%; margin-right: 10px;">
+    <img src="outputs/kdeplot.png" width="100%" />
+    <br>
+</p>
+
 I understand that this plot might be a bit difficult to interpret because our dataset is small, and the longitude and latitude values are spread over a large area. This is an important point because when data points are sparse and distributed over a wide geographical range, the density estimates can appear less focused and harder to visualize. The wide distribution of coordinates causes the density values to be spread out, making it harder to identify clear hotspots.
 
 Even though the data is sparse, the KDE is still being used to smooth out the occurrences. However, because of the large geographical area and small number of data points, it's challenging to pinpoint clear areas of concentration. Adjusting smoothing parameters, color contrast, and tile size in the plot can help make the concentration of occurrences more noticeable.
 
 
-#### <a name="#section6">KNN for Nearest Neighbor Analysis</a>
-
-##### K-Nearest Neighbors (KNN)
+#### <a name="section11">KNN for Nearest Neighbor Analysis</a>
+##### K-Nearest Neighbors (KNN)</a>
 
 K-Nearest Neighbors (KNN) is a spatial analysis technique used to measure the distance between each point and its nearest neighbors in a dataset. In ecological terms, this method can be used to understand the clustering or dispersion of species occurrences across a geographical area.
 
-##### Purpose of KNN in Biodiversity Hotspot Mapping
+#####  Purpose of KNN in Biodiversity Hotspot Mapping</a>
 
 While Kernel Density Estimation (KDE) provides a density surface that helps us identify areas of high and low species concentration, KNN adds another layer of understanding by quantifying spatial relationships between individual data points. This can help us evaluate the degree of clustering of species occurrences and detect spatial patterns that might not be immediately obvious through KDE alone.
 
@@ -356,9 +396,24 @@ nndplot <- ggplot(data.frame(nnd), aes(x = nnd)) +
 # Save the plot
 ggsave("outputs/nndplot.png", plot = nndplot, width = 8, height = 5, dpi = 300)
 ```
+<p align="center" style="display:inline-block; text-align:center; width:100%; margin-right: 10px;">
+    <img src="outputs/nndplot.png" width="100%" />
+    <br>
+</p>
 
-### <a name="#section7">Part III: Visualizing the Biodiversity Hotspot Map</a>
-#### <a name="#section6">Create a Static Hotspot Map</a>
+
+
+### <a name="section12">Part III: Visualizing the Biodiversity Hotspot Map</a>
+#### <a name="section13">Create a Static Hotspot Map</a>
+
+In this step, we will first install and load several important R packages that will help us map and analyze biodiversity hotspots. These packages include:
+
+- `sf`: This package is used for handling spatial data and geometric operations, which is essential for working with map data such as coordinates and boundaries.
+- `rnaturalearth` and `rnaturalearthdata`: These packages provide access to global geographic data, such as countries, regions, and continents. We'll use them to get the map features we need to overlay our hotspot data.
+- `leaflet`: This package allows us to create interactive maps in R, which will help us visualize the biodiversity hotspots in an engaging way. It makes it easy to add layers and features to maps, such as markers and popups.
+- `viridis`: This package provides color scales that are optimized for maps and visualizations. It helps us create visually appealing maps by using perceptually uniform color palettes.
+
+Once the packages are installed, we will define the hotspot data, including longitude and latitude coordinates, as well as the intensity levels of the hotspots, which will be used to visualize them on the map.
 
 ```r
 # Install and load necessary packages
@@ -417,8 +472,18 @@ ggplot() +
 # Save the plot as jpeg
 ggsave("outputs/hotspot_map.jpeg", width = 12, height = 7, dpi = 300)
 ```
+Here is the plot I created. Do you have any ideas on how to make the plot more beautiful? Think creatively and consider different ways to enhance the design, color scheme, or layout to improve its overall impact.
 
-#### <a name="#section4">Create an Interactive Map with Leaflet</a>
+<p align="center" style="display:inline-block; text-align:center; width:100%; margin-right: 10px;">
+    <img src="outputs/hotspot_map.jpeg" width="100%" />
+    <br>
+</p>
+
+#### <a name="section14">Create an Interactive Map with Leaflet</a>
+
+Next, we will create an interactive map that allows you to zoom in and out, making it much easier to explore different areas! Isn't that amazing? Just imagine being able to focus on the details of specific regions with just a click or scroll. Are you excited to try this out? It might sound complex at first, but the method we'll use to create this functionality is actually much simpler than you might think! With just a few steps, we’ll bring this interactive feature to life, and you'll see how easy it can be!
+
+To create an interactive hotspot map, start by using the `leaflet` package to plot the map with your hotspot data, which includes coordinates and hotspot levels. Begin by adding the map tiles with `addTiles()` and then use `addCircleMarkers(`) to plot each hotspot as a circle, with its size proportional to the hotspot level and color from the `viridis` palette. Set the map's initial view with `setView()` to center it on coordinates (0,0) and a zoom level of 2. Finally, save the interactive map as an HTML file with `saveWidget()`, allowing you to view it in a browser!
 
 ```r
 # Create an Interactive Map with Leaflet
@@ -437,26 +502,32 @@ leaflet(hotspot_data) %>%
 library(htmlwidgets)
 saveWidget(leaflet(hotspot_data), "outputs/interactive_hotspot_map.html")
 ```
+<p align="center" style="display:inline-block; text-align:center; width:100%; margin-right: 10px;">
+  <iframe src="outputs/interactive_hotspot_map.html" width="100%" height="600px" frameborder="0" style="display:block; margin: 0 auto;">
+  </iframe>
+  <br>
+</p>
 
 
 
 
 <hr>
-<hr>
 
-#### Check out our <a href="https://ourcodingclub.github.io/links/" target="_blank">Useful links</a> page where you can find loads of guides and cheatsheets.
+##### Congratulations! 🎉 You complete this entire tutorial!#####
+
+##### By completing this tutorial, I believe you will be competent in:#####
+- **Data Cleaning**: Handling and preparing datasets for analysis.
+- **Geospatial Visualization**: Plotting and customizing maps to represent spatial data.
+- **Kernel Density Estimation (KDE)**: Estimating and visualizing spatial distributions.
+- **Spatial Analysis**: Conducting nearest neighbor analysis to study species clustering.
+- **Interactive Mapping**: Creating zoomable maps with leaflet for dynamic data exploration.
+
+
+<hr>
 
 #### If you have any questions about completing this tutorial, please contact me on s.xiong-8@sms.ed.ac.uk
 
-#### <a href="INSERT_SURVEY_LINK" target="_blank">We would love to hear your feedback on the tutorial, whether you did it in the classroom or online!</a>
-
-<ul class="social-icons">
-	<li>
-		<h3>
-			<a href="https://twitter.com/our_codingclub" target="_blank">&nbsp;Follow our coding adventures on Twitter! <i class="fa fa-twitter"></i></a>
-		</h3>
-	</li>
-</ul>
+#### We would love to hear your feedback on the tutorial, whether you did it in the classroom or online!</a>
 
 ### &nbsp;&nbsp;Subscribe to our mailing list:
 <div class="container">
