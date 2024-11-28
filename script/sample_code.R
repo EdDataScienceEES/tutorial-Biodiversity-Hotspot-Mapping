@@ -70,7 +70,7 @@ print(unique_species_list)
 # Visualize Species Occurrence
 
 # Plotting the occurrences of both species
-plot<- ggplot(gorilla_clean, aes(x = longitude, y = latitude, color = species)) +
+plot <- ggplot(gorilla_clean, aes(x = longitude, y = latitude, color = species)) +
   geom_point(alpha = 0.6) +
   ggtitle("Gorilla Occurrences (Gorilla gorilla and Gorilla beringei)")
 
@@ -83,7 +83,7 @@ library(RColorBrewer)
 library(extrafont)
 
 # Create a ggplot for visualizing the gorilla occurrence data
-beautifulplot<- ggplot(gorilla_clean, aes(x = longitude, y = latitude, color = species)) +
+beautifulplot <- ggplot(gorilla_clean, aes(x = longitude, y = latitude, color = species)) +
   geom_point(alpha = 0.7, size = 3, shape = 21, stroke = 0.8) +  # Slightly larger, more defined points
   scale_color_manual(values = c("Gorilla gorilla" = "#FF9A8B",
                                 "Gorilla beringei" = "#6A9ECF")) +
@@ -250,7 +250,7 @@ ggsave("outputs/hotspot_map.jpeg", width = 12, height = 7, dpi = 300)
 
 
 # Create an Interactive Map with Leaflet
-leaflet(hotspot_data) %>%
+map <- leaflet(hotspot_data) %>%
   addTiles() %>%
   addCircleMarkers(
     ~longitude, ~latitude,
@@ -263,4 +263,12 @@ leaflet(hotspot_data) %>%
 
 # Save the interactive map as an HTML file
 library(htmlwidgets)
-saveWidget(leaflet(hotspot_data), "outputs/interactive_hotspot_map.html")
+saveWidget(
+  widget = map,
+  file = "outputs/interactive_hotspot_map.html",
+  selfcontained = TRUE,  # Embeds all resources into the HTML file
+  libdir = NULL,         # Don't use a separate directory for external libraries
+  background = "white",  # Set background color
+  title = "Interactive Hotspot Map",  # Set the title of the HTML page
+  knitrOptions = list()  # Optional list for knitr options (leave empty if not needed)
+)

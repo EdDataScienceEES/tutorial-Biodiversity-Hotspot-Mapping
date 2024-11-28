@@ -40,11 +40,11 @@
 - <a href="#section14">Create an Interactive Map with Leaflet</a>
 
 
-##### <a href="#section15">Challenges
-- <a href="#section16">Modify KDE: Experiment with adjusting the smoothing parameter (sigma) in KDE to see how it affects hotspot identification.</a>
-- <a href="#section17">Add a New Species: Use a different species (e.g., Panthera leo) and compare the hotspots for that species with the gorillas.</a>
-- <a href="#section18">Environmental Data: Simulate environmental data (e.g., precipitation) and incorporate it into the hotspot analysis.</a>
-- <a href="#section19">Enhance the Interactive Map: Add more details in the interactive map, such as the number of species per hotspot and additional metadata.</a>
+##### <a href="#section15">Challenges</a>
+- Modify KDE: Experiment with adjusting the smoothing parameter (sigma) in KDE to see how it affects hotspot identification.
+- Add a New Species: Use a different species (e.g., Panthera leo) and compare the hotspots for that species with the gorillas.
+- Environmental Data: Simulate environmental data (e.g., precipitation) and incorporate it into the hotspot analysis.
+- Enhance the Interactive Map: Add more details in the interactive map, such as the number of species per hotspot and additional metadata.
 
 
 
@@ -493,7 +493,7 @@ To create an interactive hotspot map, start by using the `leaflet` package to pl
 
 ```r
 # Create an Interactive Map with Leaflet
-leaflet(hotspot_data) %>%
+map <- leaflet(hotspot_data) %>%
   addTiles() %>%
   addCircleMarkers(
     ~longitude, ~latitude,
@@ -506,7 +506,15 @@ leaflet(hotspot_data) %>%
 
 # Save the interactive map as an HTML file
 library(htmlwidgets)
-saveWidget(leaflet(hotspot_data), "outputs/interactive_hotspot_map.html")
+saveWidget(
+  widget = map,
+  file = "outputs/interactive_hotspot_map.html",
+  selfcontained = TRUE,  # Embeds all resources into the HTML file
+  libdir = NULL,         # Don't use a separate directory for external libraries
+  background = "white",  # Set background color
+  title = "Interactive Hotspot Map",  # Set the title of the HTML page
+  knitrOptions = list()  # Optional list for knitr options (leave empty if not needed)
+)
 ```
 <p align="center" style="display:inline-block; text-align:center; width:100%; margin-right: 10px;">
   <iframe src="outputs/interactive_hotspot_map.html" width="100%" height="600px" frameborder="0" style="display:block; margin: 0 auto;">
@@ -519,15 +527,23 @@ saveWidget(leaflet(hotspot_data), "outputs/interactive_hotspot_map.html")
 
 <hr>
 
-##### Congratulations! 🎉 You complete this entire tutorial!#####
+#### 🎉Congratulations! You complete this entire tutorial!🎉
 
-##### By completing this tutorial, I believe you will be competent in:#####
+#### 🥸By completing this tutorial, I believe you will be competent in:🥸
 - **Data Cleaning**: Handling and preparing datasets for analysis.
 - **Geospatial Visualization**: Plotting and customizing maps to represent spatial data.
 - **Kernel Density Estimation (KDE)**: Estimating and visualizing spatial distributions.
 - **Spatial Analysis**: Conducting nearest neighbor analysis to study species clustering.
 - **Interactive Mapping**: Creating zoomable maps with leaflet for dynamic data exploration.
 
+
+#### 😎You may also want to delve further; you can try to complete the following challenge yourself.😎
+
+##### <a name="section15">Challenges</a>
+- Modify KDE: Experiment with adjusting the smoothing parameter (sigma) in KDE to see how it affects hotspot identification.
+- Add a New Species: Use a different species (e.g., Panthera leo) and compare the hotspots for that species with the gorillas.
+- Environmental Data: Simulate environmental data (e.g., precipitation) and incorporate it into the hotspot analysis.
+- Enhance the Interactive Map: Add more details in the interactive map, such as the number of species per hotspot and additional metadata.
 
 <hr>
 
