@@ -1,6 +1,12 @@
-<center><img src="{{ site.baseurl }}/tutheaderbl.png" alt="Img"></center>
-
-To add images, replace `tutheaderbl1.png` with the file name of any image you upload to your GitHub repository.
+<p align="center" style="display:inline-block; text-align:center; width:100%; margin-right: 10px;">
+    <img src="figures/gorilla.png" width="100%" />
+    <br>
+    <i style="font-size: 0.9em; text-align: center; display: block;">
+      Image showing gorillas in their natural habitat.<br>
+      (Source: <a href="https://www.inaturalist.org/photos/415033125" style="color: inherit; text-decoration: none;">miquelpaniscus, iNaturalist</a>)<br>
+      Creator: miquelpaniscus (licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/" style="color: inherit; text-decoration: none;">CC BY-NC 4.0</a>)
+    </i>
+</p>
 
 ## Biodiversity Hotspot Mapping
 
