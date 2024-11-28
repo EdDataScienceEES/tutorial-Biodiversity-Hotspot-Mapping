@@ -242,76 +242,61 @@ ggsave("outputs/gorilla_plot.png", plot = plot, width = 6, height = 4, dpi = 300
 ggsave("outputs/gorilla_beautifulplot.png", plot = beautifulplot, width = 6, height = 4, dpi = 300)
 ```
 
+#### <a href="#section5">Perform Kernel Density Estimation (KDE)</a>
+##### Kernel Density Estimation (KDE)
 
+KDE is a statistical method used to estimate the probability density function (PDF) of a continuous random variable. In simpler terms, it helps us understand the distribution of species occurrences across a given geographic area.
 
+##### Purpose of KDE in Biodiversity Hotspot Mapping
 
+When we have data points (such as species occurrences marked by longitude and latitude) scattered across a geographical region, we may want to see the concentration of those occurrences in certain areas. KDE smooths out these data points into a continuous surface, which shows the density of occurrences across the area.
 
+For example, KDE helps us visualize where species are most concentrated in a given geographic region. In the context of biodiversity hotspots:
 
-
-At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
-
-When you have a larger chunk of code, you can paste the whole code in the `Markdown` document and add three backticks on the line before the code chunks starts and on the line after the code chunks ends. After the three backticks that go before your code chunk starts, you can specify in which language the code is written, in our case `R`.
-
-To find the backticks on your keyboard, look towards the top left corner on a Windows computer, perhaps just above `Tab` and before the number one key. On a Mac, look around the left `Shift` key. You can also just copy the backticks from below.
-
-```r
-# Set the working directory
-setwd("your_filepath")
-
-# Load packages
-library(ggplot2)
-library(dplyr)
-```
-
-<a name="section2"></a>
-
-## 2. The second section
-
-You can add more text and code, e.g.
+- Areas with high density will indicate regions where the species is most frequently found, making them potential hotspots.
+- Areas with low density will represent regions with fewer species occurrences.
 
 ```r
-# Create fake data
-x_dat <- rnorm(n = 100, mean = 5, sd = 2)  # x data
-y_dat <- rnorm(n = 100, mean = 10, sd = 0.2)  # y data
-xy <- data.frame(x_dat, y_dat)  # combine into data frame
+# Install additional packages
+install.packages("spatstat")
+install.packages("sp")
+
+# Perform Kernel Density Estimation
+library(spatstat)
+library(sp)
+
+# Create point pattern object
+gorilla_points <- data.frame(x = gorilla_clean$longitude, y = gorilla_clean$latitude)
+coordinates(gorilla_points) <- ~x + y
+pp <- ppp(gorilla_points$x, gorilla_points$y, window = owin(xrange = range(gorilla_points$x), yrange = range(gorilla_points$y)))
+
+# Estimate kernel density
+kde <- density(pp, sigma = 0.05)
+
+# Convert KDE to a data frame for ggplot2
+kde_df <- as.data.frame(kde)
+colnames(kde_df) <- c("x", "y", "z")  # Ensure column names are 'x', 'y', and 'z'
+
+# Visualize the density map
+ggplot(kde_df, aes(x = x, y = y, fill = z)) +
+  geom_tile() +
+  scale_fill_viridis_c() +
+  ggtitle("Kernel Density Estimate of Gorilla Occurrences") +
+  theme_minimal()
+  
+# Save the plots
+ggsave("outputs/kdeplot.png", plot = kde_plot, width = 8, height = , dpi = 300)
 ```
+I understand that this plot might be a bit difficult to interpret because our dataset is small, and the longitude and latitude values are spread over a large area. This is an important point because when data points are sparse and distributed over a wide geographical range, the density estimates can appear less focused and harder to visualize. The wide distribution of coordinates causes the density values to be spread out, making it harder to identify clear hotspots.
 
-Here you can add some more text if you wish.
+Even though the data is sparse, the KDE is still being used to smooth out the occurrences. However, because of the large geographical area and small number of data points, it's challenging to pinpoint clear areas of concentration. Adjusting smoothing parameters, color contrast, and tile size in the plot can help make the concentration of occurrences more noticeable.
 
-```r
-xy_fil <- xy %>%  # Create object with the contents of `xy`
-	filter(x_dat < 7.5)  # Keep rows where `x_dat` is less than 7.5
-```
 
-And finally, plot the data:
 
-```r
-ggplot(data = xy_fil, aes(x = x_dat, y = y_dat)) +  # Select the data to use
-	geom_point() +  # Draw scatter points
-	geom_smooth(method = "loess")  # Draw a loess curve
-```
 
-At this point it would be a good idea to include an image of what the plot is meant to look like so students can check they've done it right. Replace `IMAGE_NAME.png` with your own image file:
 
-<center> <img src="{{ site.baseurl }}/IMAGE_NAME.png" alt="Img" style="width: 800px;"/> </center>
 
-<a name="section1"></a>
 
-## 3. The third section
-
-More text, code and images.
-
-This is the end of the tutorial. Summarise what the student has learned, possibly even with a list of learning outcomes. In this tutorial we learned:
-
-##### - how to generate fake bivariate data
-##### - how to create a scatterplot in ggplot2
-##### - some of the different plot methods in ggplot2
-
-We can also provide some useful links, include a contact form and a way to send feedback.
-
-For more on `ggplot2`, read the official <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" target="_blank">ggplot2 cheatsheet</a>.
-
-Everything below this is footer material - text and links that appears at the end of all of your tutorials.
 
 <hr>
 <hr>

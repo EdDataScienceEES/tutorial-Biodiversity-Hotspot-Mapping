@@ -2,7 +2,7 @@
 # Author: Your Name
 # Date: DD/MM/YYYY
 
--------------------------------------
+# Data Inspection and Cleaning ----
 # Install required packages
 install.packages("dplyr")
 install.packages("ggplot2")
@@ -64,12 +64,11 @@ cat("Number of unique species in the dataset:", length(unique_species_list), "\n
 cat("Unique species in the dataset:\n")
 print(unique_species_list)
 
--------------------------------------
+# Geospatial Data Analysis ----
 # Plotting the occurrences of both species
 plot<- ggplot(gorilla_clean, aes(x = longitude, y = latitude, color = species)) +
   geom_point(alpha = 0.6) +
   ggtitle("Gorilla Occurrences (Gorilla gorilla and Gorilla beringei)")
-
 
 # Install packages
 install.packages("RColorBrewer")
@@ -109,5 +108,32 @@ beautifulplot<- ggplot(gorilla_clean, aes(x = longitude, y = latitude, color = s
 ggsave("outputs/gorilla_plot.png", plot = plot, width = 8, height = 5, dpi = 300)
 ggsave("outputs/gorilla_beautifulplot.png", plot = beautifulplot, width = 8, height = , dpi = 300)
 
+# Install additional packages
+install.packages("spatstat")
+install.packages("sp")
 
+# Perform Kernel Density Estimation
+library(spatstat)
+library(sp)
 
+# Create point pattern object
+gorilla_points <- data.frame(x = gorilla_clean$longitude, y = gorilla_clean$latitude)
+coordinates(gorilla_points) <- ~x + y
+pp <- ppp(gorilla_points$x, gorilla_points$y, window = owin(xrange = range(gorilla_points$x), yrange = range(gorilla_points$y)))
+
+# Estimate kernel density
+kde <- density(pp, sigma = 0.05)
+
+# Convert KDE to a data frame for ggplot2
+kde_df <- as.data.frame(kde)
+colnames(kde_df) <- c("x", "y", "z")  # Ensure column names are 'x', 'y', and 'z'
+
+# Visualize the density map
+kde_plot<- ggplot(kde_df, aes(x = x, y = y, fill = z)) +
+  geom_tile() +
+  scale_fill_viridis_c() +
+  ggtitle("Kernel Density Estimate of Gorilla Occurrences") +
+  theme_minimal()
+
+# Save the plots
+ggsave("outputs/kdeplot.png", plot = kde_plot, width = 8, height = , dpi = 300)
