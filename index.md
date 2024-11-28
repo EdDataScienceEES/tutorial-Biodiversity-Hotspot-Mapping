@@ -19,11 +19,12 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 - <a href="#section2">Prerequisites</a>
 - <a href="#section3">Data and Materials</a>
 
-##### <a href="#section2">PART I: Species Occurrence Data</a>
-- Inspecting the Data
+##### <a href="#section2">PART I: Data Inspection and Cleaning</a>
 
-
-##### <a href="#section4">PART II: Environmental Data</a>
+##### <a href="#section4">PART II: Geospatial Data Analysis</a>
+- Visualize Species Occurrence
+- Perform Kernel Density Estimation (KDE)
+- Moran's I for Spatial Autocorrelation
 
 
 
@@ -73,66 +74,20 @@ You can find all the data that you require for completing this tutorial on this 
 
 **Now, let's get started!**
 
-Begin by setting up a new R script. At the very top, include a few lines to introduce the project, such as your name, the date, and a brief description. When going through the tutorial, copy the individual code chunks and paste them to your script. Use # when adding comments.
 
-<style>
-    .code-container {
-        position: relative;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 15px;
-        background-color: #f9f9f9;
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 14px;
-    }
+#### <a href="#section2">PART I: Data Inspection and Cleaning</a>
 
-    .copy-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+Begin by setting up a new R script. At the very top, include a few lines to introduce the project, such as your name, the date, and a brief description. When going through the tutorial, copy the individual code chunks and paste them to your script. Use hash symbol `#` when adding comments.
 
-    .copy-button:hover {
-        background-color: #45a049;
-    }
-</style>
-
-<div class="code-container">
-    <button class="copy-button" onclick="copyCode('code-block-ddmmyy')">Copy contents</button>
-    <pre id="code-block-ddmmyy">
+```r
 # Biodiversity Hotspot
 # Author: Your Name
 # Date: DD/MM/YYYY
-    </pre>
-</div>
-
-<script>
-    function copyCode(codeBlockId) {
-        const code = document.getElementById(codeBlockId).textContent.trim();
-        navigator.clipboard.writeText(code)
-            .then(() => {
-                alert('Code copied to clipboard!');
-            })
-            .catch(err => {
-                console.error('Failed to copy code:', err);
-                alert('Failed to copy code. Please try again.');
-            });
-    }
-</script>
+```
 
 Setting the working directory, install and load libraries of all packages required for this tutorial.
 
-<div class="code-container" style="position: relative;">
-    <button class="copy-button" onclick="copyCode('code-block-install')" style="position: absolute; top: 10px; right: 10px; background-color: #4CAF50; color: white; border: none; padding: 10px; border-radius: 5px;">Copy contents</button>
-    <pre id="code-block-install">
-    
+```r
 # Set working directory to where you saved the folder with tutorial materials on your computer
 setwd("your_filepath")
 
@@ -145,12 +100,88 @@ setwd("your_filepath")
 install.packages("dplyr")
 install.packages("ggplot2")
 
-# Load the Gorilla gorilla occurrence data
+# Load the gorilla occurrence data
 gorilla <- read.csv("data/gorilla.csv")
-    </pre>
-</div>
+```
+
+Before start our work like visual or even our final goal-hotspot, we need to inspect the dataset to understand its structure and identify potential issues.
+
+```r
+# Inspect the dataset to understand its structure and identify potential issues
+summary(gorilla)
+```
+
+After inspecting the brief features of our data, we found that there are NAs, but we don't want to remove all of them. If we do, there may be very little data left, so we will only focus on removing the NAs that may affect our subsequent graphing and mapping.
+
+Next, let's handle missing data, and ensure no empty species entries.
+
+```r
+# Remove rows with empty species names and check for missing data
+gorilla_data_clean <- gorilla_data %>%
+  filter(species != "") %>%
+  filter(!is.na(species), !is.na(decimalLatitude), !is.na(decimalLongitude))
+
+# Rename the column 'decimalLongitude' to 'longitude' and 'decimalLatitude' to 'latitude'
+gorilla_data_clean <- gorilla_data_clean %>%
+  rename(longitude = decimalLongitude, latitude = decimalLatitude)
+
+# Verify the updated column names
+colnames(gorilla_data_clean)
+```
+
+Remember, the technique of combining two separate blocks of code into one involves chaining operations together with the pipe operator `%>%`, a key feature of the `dplyr` package in `R`.
+
+We can apply this to reduce redundancy. Try the code below—it looks better, right? You can keep the following code and delete the one previously used for data cleaning.
+
+```r
+# Clean the dataset
+gorilla_clean <- gorilla %>%
+  # Remove rows with empty or missing species names and coordinates
+  filter(!is.na(species) & species != "") %>%
+  filter(!is.na(decimalLatitude) & !is.na(decimalLongitude)) %>%
+  # Rename columns for consistency and simplicity
+  rename(
+    longitude = decimalLongitude,
+    latitude = decimalLatitude
+  )
+
+# Validate the cleaned data
+# Check for duplicate rows
+gorilla_clean <- gorilla_clean %>%
+  distinct()
+
+# Summarize the cleaned dataset to verify the cleaning process
+glimpse(gorilla_clean)
+summary(gorilla_clean)
+
+# Check the first few rows of the cleaned data for a quick inspection
+head(gorilla_clean)
+```
+
+You may also want to save the cleaned data for future use
+```r
+# Optional
+write.csv(gorilla_clean, "data/gorilla_clean.csv")
+```
+
+Notice that we used the `glimpse` function above. We can see that although we focus on gorillas, there are more specific species under the gorilla genus: ***Gorilla gorilla*** and ***Gorilla beringei***. We will use an r command to help us print out this result manually.
+
+```r
+# Get the unique species
+unique_species_list <- gorilla_clean %>%
+  distinct(species) %>%  # Select unique species from the dataset
+  pull(species)          # Extract the unique species as a vector
+
+# Display the number of unique species in the dataset
+cat("Number of unique species in the dataset:", length(unique_species_list), "\n")
+
+# Display the list of unique species
+cat("Unique species in the dataset:\n")
+print(unique_species_list)
+```
 
 
+#### <a name="#section4">PART II: Geospatial Data Analysis</a>
 
 
 
