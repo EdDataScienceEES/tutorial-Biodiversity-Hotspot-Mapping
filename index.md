@@ -527,9 +527,9 @@ saveWidget(
 
 <hr>
 
-#### 🎉Congratulations! You complete this entire tutorial!🎉
+#### Congratulations! You complete this entire tutorial!
 
-#### 🥸By completing this tutorial, I believe you will be competent in:🥸
+#### By completing this tutorial, I believe you will be competent in:
 - **Data Cleaning**: Handling and preparing datasets for analysis.
 - **Geospatial Visualization**: Plotting and customizing maps to represent spatial data.
 - **Kernel Density Estimation (KDE)**: Estimating and visualizing spatial distributions.
@@ -537,7 +537,7 @@ saveWidget(
 - **Interactive Mapping**: Creating zoomable maps with leaflet for dynamic data exploration.
 
 
-#### 😎You may also want to delve further; you can try to complete the following challenge yourself.😎
+#### You may also want to delve further; you can try to complete the following challenge yourself.
 
 ##### <a name="section15">Challenges</a>
 - Modify KDE: Experiment with adjusting the smoothing parameter (sigma) in KDE to see how it affects hotspot identification.
