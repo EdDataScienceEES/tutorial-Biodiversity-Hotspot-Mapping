@@ -13,12 +13,8 @@ This R script is divided into the following key sections:
 
 ### **Data Visualization**
 - **Visualizes species occurrences**: Plots the locations of the species using `ggplot2`, with different colors for each species.
-- **Enhances the plot aesthetics**: Uses custom color palettes and themes to improve the readability and presentation of the species occurrence plot.
-- **Creates a KDE (Kernel Density Estimate)** plot to visualize the spatial distribution of **Gorilla** occurrences, showing areas of higher concentration.
-
-### **Nearest Neighbor Analysis**
-- **Calculates nearest neighbor distances** to understand the clustering of gorilla occurrences.
-- **Generates a histogram** to visualize the distribution of these distances, helping assess how the species is distributed spatially.
+- **KDE (Kernel Density Estimate)**: visualizing the spatial distribution of **Gorilla** occurrences, showing areas of higher concentration.
+- **Nearest Neighbor Analysis**: understanding the clustering of gorilla occurrences, and visualizing the distribution of these distances, helping assess how the species is distributed spatially.
 
 ### **Geospatial Hotspot Mapping**
 - **Creates static maps** of biological hotspots for **Gorilla** occurrences, highlighting areas with high densities using the `sf` and `ggplot2` packages.
